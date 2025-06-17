@@ -6,7 +6,56 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of Greenweez / we have one row per product_id found in each orders_id
+        columns:
+          - name: date_date
+            description: date of purchase
+          - name: orders_id
+            description: foreing key
+          - name: pdt_id
+            description: foreing key
+          - name: revenue
+            description: the amount paid by the customer to purchase the product. revenue = quantity * selling_price
+          - name: quantity
+            description: the quantity of products purchased for a given order
+        tests:
+          - unique: 
+              column_name: "(orders_id || '-' || pdt_id)"
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: 
+                - orders_id
+                - pdt_id
       - name: product
         identifier: raw_gz_product
+        description: product of Greenweez / we have one row per products_id and purchSE_price per id
+        columns:
+          - name: products_id
+            description: id of the item
+          - name: purchSE_PRICE
+            description: foreing key
+        tests:
+          - unique: 
+              column_name: "(product_id || '-' || purch_SE_price)"
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: 
+                - products_id
+                - purchSE_PRICE
       - name: ship
         identifier: raw_gz_ship
+        columns:
+          - name: orders_id
+            description: number of the order
+          - name: shipping_fee
+            description: foreing key
+          - name: shipping_fee_1
+            description: foreing key
+          - name: logCost
+            description: the amount paid for the logistic
+          - name: ship_cost
+            description: the amount paid only for the shipment
+        tests:
+          - unique: 
+              column_name: "(orders_id)"
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: 
+                - orders_id
