@@ -42,6 +42,7 @@ sources:
                 - purchSE_PRICE
       - name: ship
         identifier: raw_gz_ship
+        description: ship of Greenweez / we have one row per order shipped
         columns:
           - name: orders_id
             description: number of the order
