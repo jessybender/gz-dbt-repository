@@ -25,10 +25,9 @@ sources:
               combination_of_columns: 
                 - orders_id
                 - pdt_id
-                
       - name: product
         identifier: raw_gz_product
-description: product of Greenweez / we have one row per products_id and purchSE_price per id
+        description: product of Greenweez / we have one row per products_id and purchSE_price per id
         columns:
           - name: products_id
             description: id of the item
@@ -41,10 +40,9 @@ description: product of Greenweez / we have one row per products_id and purchSE_
               combination_of_columns: 
                 - products_id
                 - purchSE_PRICE
-
       - name: ship
         identifier: raw_gz_ship
-description: ship of Greenweez / we have one row per order shipped
+        description: ship of Greenweez / we have one row per order shipped
         columns:
           - name: orders_id
             description: number of the order
@@ -62,5 +60,3 @@ description: ship of Greenweez / we have one row per order shipped
           - dbt_utils.unique_combination_of_columns:
               combination_of_columns: 
                 - orders_id
-    
-

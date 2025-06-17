@@ -4,9 +4,15 @@ with
 
     renamed as (
 
-        select orders_id, shipping_fee, shipping_fee_1, logcost, ship_cost from source
+        select 
+        orders_id, 
+        shipping_fee, 
+        shipping_fee_1, 
+        logcost, 
+        ship_cost from source
 
     )
 
 select *
 from renamed
+CAST(ship_cost AS FLOAT64)
